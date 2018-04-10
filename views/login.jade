@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	if message
+		script.
+			swal("#{title}", "#{message}", "error");
+	section.container(style='margin-top:10%')
+		.login
+			h1 Login to SP6 Connected Suspension RPI
+			form(method='post', action='/login')
+				p
+					input(type='text', name='login', value='', placeholder='Username or Email')
+				p
+					input(type='password', name='password', value='', placeholder='Password')
+				p.submit
+					input(type='submit', name='commit', value='Login')
+	section.about
+		img(src='images/logo.png')
+		p.about-author
+			| © 2018 
+			a(href='http://apm.com.my', target='_blank') APM Engineering & Research Sdn. Bhd
