@@ -1,134 +1,204 @@
 extends layout
 block content
-	script(type='text/javascript').
-		function submitform()
-		{	
-			document.truckform.submit();
-		}
-		$( function() {
-			$( "#tabs" ).tabs();
-		} );
-	if message
-		script.
-			swal("#{title}", "#{message}", "success");
-	form(name='truckform', method='post', action='/config')
-		header
-			.container
-				h1
-					a(href='/') SP6 CS RPI
-				span(style='margin-left: 40%')
-					img(src='../images/logo.png', width='65px', style='margin-top:-8px')
-				nav
-					ul
-						li
-							a.icon.settings(href='/') Settings
-						li
-							a.icon.messages(href='/logout') Log Out
-			// CONTAINER START
-			.container-fluid.main
-				.row
-					.col-lg-6
-						.box
-							.checkout
-								.checkout-header
-									h1.checkout-title
-										| Vehicle Type
-										span.checkout-price 1
-								p
-									input.checkout-input.checkout-exp(type='text', name='Vehicle_Name', value=content.Vehicle_Name, placeholder='Vehicle Type Number')
-									input.checkout-input.checkout-exp(type='text', name='Reg_Number', value=content.Reg_Number, placeholder='Registration Number')
-						.box
-							.checkout
-								.checkout-header
-									h1.checkout-title
-										| Body Type
-										span.checkout-price 2
-								p
-									input.checkout-input.checkout-name(type='text', name='beta', value=content.beta, placeholder='Beta value', autofocus='')
-									input.checkout-input.checkout-exp(type='text', name='frt', value=content.frt, placeholder='Body Sprint Weight')
-									input.checkout-input.checkout-exp(type='text', name='cgx1', value=content.cgx1, placeholder='CGX Value')
-						.box
-							.checkout
-								.checkout-header
-									h1.checkout-title
-										| Chassis Type
-										span.checkout-price 3
-								p
-									input.checkout-input.checkout-name(type='text', name='Wb', value=content.Wb, placeholder='Wheel Base', autofocus='')
-									input.checkout-input.checkout-exp(type='text', name='FUS', value=content.FUS, placeholder='Unsprung Mass Weight')
-					.col-lg-6
-						.boxC
-							center
-								img(src='../images/Isuzu001.png', height='250px')
-						.box
-							#tabs
-								ul
-									li
-										a(href='#tabs-1') Sensor
-									li
-										a(href='#tabs-2') Spring
-									li
-										a(href='#tabs-3') Friction
-									li
-										a(href='#tabs-4') Others
-								#tabs-1(style='min-height:180px;width:100%;text-align:center;')
-									div(style='display: inline-block;width:45%')
-										p
-											center
-												h5 FRONT
-											input.checkout-input.checkout-name(type='text', name='FS_C_CA', value=content.FS_C_CA, placeholder='A', autofocus='')
-											input.checkout-input.checkout-name(type='text', name='FS_C_CB', value=content.FS_C_CB, placeholder='B')
-									div(style='display: inline-block;width:45%')
-										center
-											h5 REAR
-										input.checkout-input.checkout-name(type='text', name='RS_C_CA', value=content.RS_C_CA, placeholder='A')
-										input.checkout-input.checkout-name(type='text', name='RS_C_CB', value=content.RS_C_CB, placeholder='B')
-										p
-								#tabs-2(style='min-height:180px;width:100%;text-align:center;')
-									div(style='display: inline-block;width:45%')
-										p
-											center
-												h5 FRONT
-											input.checkout-input.checkout-name(type='text', name='FS_CA', value=content.FS_CA, placeholder='A', autofocus='')
-											input.checkout-input.checkout-name(type='text', name='FS_CB', value=content.FS_CB, placeholder='B')
-									div(style='display: inline-block;width:45%')
-										center
-											h5 REAR
-										input.checkout-input.checkout-name(type='text', name='RS_CA', value=content.RS_CA, placeholder='A')
-										input.checkout-input.checkout-name(type='text', name='RS_CB', value=content.RS_CB, placeholder='B')
-										p
-								#tabs-3(style='min-height:180px;width:100%;text-align:center;')
-									div(style='display: inline-block;width:45%')
-										p
-											center
-												h5 FRONT
-											input.checkout-input.checkout-name(type='text', name='SFS_CA', value=content.SFS_CA, placeholder='A', autofocus='')
-											input.checkout-input.checkout-name(type='text', name='SFS_CB', value=content.SFS_CB, placeholder='B')
-									div(style='display: inline-block;width:45%')
-										center
-											h5 REAR
-										input.checkout-input.checkout-name(type='text', name='SRS_CA', value=content.SRS_CA, placeholder='A')
-										input.checkout-input.checkout-name(type='text', name='SRS_CB', value=content.SRS_CB, placeholder='B')
-										p
-								#tabs-4(style='min-height:180px;width:100%;text-align:center;')
-									div(style='display: inline-block;width:45%')
-										p
-											center
-												h5 MODE & MAC
-											input.checkout-input.checkout-name(name='Mode', type='text', value=content.Mode, placeholder='Mode Value', autofocus='')
-											input.checkout-input.checkout-name(name='MAC', type='text', value=content.MAC, placeholder='MAC Value')
-									div(style='display: inline-block;width:45%')
-										p
-											h5 AW1
-											input.checkout-input.checkout-name(name='AW1', type='text', value=content.AW1, placeholder='AW1 Value')
-										p
-						.about(style='margin-bottom:100px;')
-							section(style='margin-top:15px;')
-								if message 
-									a.button.button-green(href='/reboot') Reboot
-								else 
-									a.button.button-red(href='javascript: submitform()') Update
-									a.button.button-green(href='/reboot') Reboot
-							p.about-author
-								| © 2018
-								a(href='http://apm.com.my', target='_blank') APM Engineering & Research Sdn. Bhd
+    script(type='text/javascript').
+        function submitform()
+        {	
+            document.truckform.submit();
+        } 
+        $( function() {
+            $( "#tabs" ).tabs();
+        } );
+    if message
+        script.
+            swal("#{title}", "#{message}", "success");
+    header
+      .container
+        h1
+          a(href='/index') SP6 CS RPI
+        span(style='margin-left: 40%')
+          img(src='images/logo.png', width='65px', style='margin-top:-8px')
+        nav
+          ul
+            li.active
+              a.icon.settings(href='/download')
+                span Save Config
+            li
+              a.icon.messages(href='/logout') Log Out
+    // CONTAINER START
+    form.form-horizontal(name='truckform', method='post', action='/config')
+      .container-fluid.main
+        .row
+          .col-lg-6
+            .box
+              .checkout
+                .checkout-header
+                  h1.checkout-title
+                    | Vehicle Type
+                    span.checkout-price 1
+                .form-group
+                  label.col-xs-3(for='Vehicle_Name') Vehicle Number
+                  .col-xs-9
+                    input.checkout-input.checkout-exp(name='Vehicle_Name', type='text', value=content.Vehicle_Name, placeholder='Vehicle Number', autofocus='')
+                .form-group
+                  label.col-xs-3(for='Reg_Number') Registration Number
+                  .col-xs-9
+                    input.checkout-input.checkout-exp(name='Reg_Number', type='text', value=content.Reg_Number, placeholder='Registration Number')
+            .box
+              .checkout
+                .checkout-header
+                  h1.checkout-title
+                    | Body Type
+                    span.checkout-price 2
+                .form-group
+                  label.col-xs-3(for='beta') Beta value
+                  .col-xs-9
+                    input.checkout-input.checkout-name(name='beta', type='text', value=content.beta, placeholder='Beta value', autofocus='')
+                .form-group
+                  label.col-xs-3(for='frt') Body Sprint Weight
+                  .col-xs-9
+                    input.checkout-input.checkout-name(name='frt', type='text', value=content.frt, placeholder='Body Sprint Weight')
+                .form-group
+                  label.col-xs-3(for='cgx1') CGX Value
+                  .col-xs-9
+                    input.checkout-input.checkout-name(name='cgx1', type='text', value=content.cgx1, placeholder='CGX Value')
+            .box
+              .checkout
+                .checkout-header
+                  h1.checkout-title
+                    | Chassis Type
+                    span.checkout-price 3
+                .form-group
+                  label.col-xs-3(for='Wb') Wheel Base
+                  .col-xs-9
+                    input.checkout-input.checkout-name(name='Wb', type='text', value=content.Wb, placeholder='Wheel Base', autofocus='')
+                .form-group
+                  label.col-xs-3(for='FUS') Unsprung Mass Weight
+                  .col-xs-9
+                    input.checkout-input.checkout-name(name='FUS', type='text', value=content.FUS, placeholder='Unsprung Mass Weight')
+          .col-lg-6
+            .boxC
+              center
+                img(src='images/Isuzu001.png', height='250px')
+            .box
+              #tabs
+                ul
+                  li
+                    a(href='#tabs-1') Sensor
+                  li
+                    a(href='#tabs-2') Spring
+                  li
+                    a(href='#tabs-3') Friction
+                  li
+                    a(href='#tabs-4') Others
+                #tabs-1(style='min-height:180px;width:100%;text-align:center;')
+                  div(style='display: inline-block;width:45%')
+                    p
+                      center
+                        h5 FRONT
+                      .form-group
+                        label.col-xs-4(for='FS_C_CA') Sensor Front A : 
+                        .col-xs-8
+                          input.checkout-input.checkout-name(name='FS_C_CA', type='text', value=content.FS_C_CA, placeholder='A', autofocus='')
+                      .form-group
+                        label.col-xs-4(for='FS_C_CB') Sensor Front B : 
+                        .col-xs-8
+                          input.checkout-input.checkout-name(name='FS_C_CB', type='text', value=content.FS_C_CB, placeholder='B')
+                      .form-group
+                        label.col-xs-4(for='FS_SN') Front Serial  # : 
+                        .col-xs-8
+                          input.checkout-input.checkout-name(name='FS_SN', type='text', value=content.FS_SN, placeholder='Front Serial  # ')
+                  div(style='display: inline-block;width:45%')
+                    center
+                      h5 REAR
+                    .form-group
+                      label.col-xs-4(for='RS_C_CA') Sensor Rear A : 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='RS_C_CA', type='text', value=content.RS_C_CA, placeholder='A', autofocus='')
+                    .form-group
+                      label.col-xs-4(for='RS_C_CB') Sensor Rear B : 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='RS_C_CB', type='text', value=content.RS_C_CA, placeholder='B')
+                    .form-group
+                      label.col-xs-4(for='RS_SN') Rear Serial # : 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='RS_SN', type='text', value=content.FS_SN, placeholder='Rear Serial #')
+                #tabs-2(style='min-height:180px;width:100%;text-align:center;')
+                  div(style='display: inline-block;width:45%')
+                    p
+                      center
+                        h5 FRONT
+                      .form-group
+                        label.col-xs-4(for='FS_CA') Spring Front A : 
+                        .col-xs-8
+                          input.checkout-input.checkout-name(name='FS_CA', type='text', value=content.FS_CA, placeholder='A', autofocus='')
+                      .form-group
+                        label.col-xs-4(for='FS_CB') Spring Front B : 
+                        .col-xs-8
+                          input.checkout-input.checkout-name(name='FS_CB', type='text', value=content.FS_CA, placeholder='B')
+                  div(style='display: inline-block;width:45%')
+                    center
+                      h5 REAR
+                    .form-group
+                      label.col-xs-4(for='RS_CA') Spring Rear A : 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='RS_CA', type='text', value=content.RS_CA, placeholder='A', autofocus='')
+                    .form-group
+                      label.col-xs-4(for='RS_CB') Spring Rear B : 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='RS_CB', type='text', value=content.RS_CB, placeholder='B')
+                #tabs-3(style='min-height:180px;width:100%;text-align:center;')
+                  div(style='display: inline-block;width:45%')
+                    p
+                      center
+                        h5 FRONT
+                      .form-group
+                        label.col-xs-4(for='SFS_CA') Friction Front A :
+                        .col-xs-8
+                          input.checkout-input.checkout-name(name='SFS_CA', type='text', value=content.SFS_CA, placeholder='A', autofocus='')
+                      .form-group
+                        label.col-xs-4(for='SFS_CB') Friction Front B :
+                        .col-xs-8
+                          input.checkout-input.checkout-name(name='SFS_CB', type='text', value=content.SFS_CB, placeholder='B')
+                  div(style='display: inline-block;width:45%')
+                    center
+                      h5 REAR
+                    .form-group
+                      label.col-xs-4(for='SRS_CA') Friction Rear A : 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='SRS_CA', type='text', value=content.SRS_CA, placeholder='A', autofocus='')
+                    .form-group
+                      label.col-xs-4(for='SRS_CB') Friction Rear B : 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='SRS_CB', type='text', value=content.SRS_CA, placeholder='B')
+                #tabs-4(style='min-height:180px;width:100%;text-align:center;')
+                  div(style='display: inline-block;width:45%')
+                    .form-group
+                      label.col-xs-4(for='Mode') Pilot Mode : 
+                      .col-xs-8
+                        // Rounded switch
+                        label.switch
+                            input(name='Mode', type='checkbox', placeholder='Mode Value', checked=content.Mode.indexOf('0') !=-1)
+                            span.slider.round
+                    .form-group
+                      label.col-xs-4(for='MAC') Mac Adress: 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='MAC', type='text', value=content.MAC, placeholder='MAC Address', autofocus='')
+                  div(style='display: inline-block;width:45%')
+                    .form-group
+                      label.col-xs-4(for='AW1') AW1: 
+                      .col-xs-8
+                        input.checkout-input.checkout-name(name='AW1', type='text', value=content.AW1, placeholder='AW1 Value')
+                    .form-group
+                      label.col-xs-4(for='itemdesc') . 
+                      .col-xs-8
+                        p
+            .about(style='margin-bottom:100px;')
+              section(style='margin-top:15px;')
+                if message 
+                    a.button.button-green(href='/reboot') Reboot
+                else 
+                    a.button.button-red(href='javascript: submitform()') Update
+                    a.button.button-green(href='/reboot') Reboot
+              p.about-author
+                | © 2018
+                a(href='http://apm.com.my', target='_blank') APM Engineering & Research Sdn. Bhd

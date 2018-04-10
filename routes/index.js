@@ -5,6 +5,9 @@ var config = require('../config.json');
 var credentials = require('../credentials.json');
 
 var fs = require('fs');
+var path = require('path');
+var mime = require('mime');
+
 var exec = require('child_process').exec;
 
 /* GET home page. */
@@ -63,12 +66,28 @@ router.get('/auth', function(req, res, next) {
   res.send(credentials);
 });
 
-router.get('/config', function(req, res, next) {
-  res.send(config);
+router.get('/download', function(req, res, next) {
+  var file = __dirname + '/../config.json';
+  console.log(file);
+  var filename = path.basename(file);
+  var mimetype = mime.getType(file);
+
+  res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+  res.setHeader('Content-type', mimetype);
+
+  var filestream = fs.createReadStream(file);
+  filestream.pipe(res);
 });
 
 router.post('/config', function(req, res, next){
   body = req.body;
+  //check if Mode field is set
+  if(!body.Mode) {
+    body.Mode = "1";
+  }
+  if(body.Mode === "on") {
+    body.Mode = "0";
+  }
   //code to update the config file.
   fs.writeFileSync('config.json', JSON.stringify(body,null,4));
   res.render('index', {
